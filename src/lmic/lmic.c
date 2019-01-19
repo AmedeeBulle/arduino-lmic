@@ -1039,7 +1039,7 @@ static bit_t decodeFrame (void) {
     u1_t hdr    = d[0];
     u1_t ftype  = hdr & HDR_FTYPE;
     int  dlen   = LMIC.dataLen;
-    const char *window = (LMIC.txrxFlags & TXRX_DNW1) ? "RX1" : ((LMIC.txrxFlags & TXRX_DNW2) ? "RX2" : "Other");
+    const char *window __attribute__((unused)) = (LMIC.txrxFlags & TXRX_DNW1) ? "RX1" : ((LMIC.txrxFlags & TXRX_DNW2) ? "RX2" : "Other");
     if( dlen < OFF_DAT_OPTS+4 ||
         (hdr & HDR_MAJOR) != HDR_MAJOR_V1 ||
         (ftype != HDR_FTYPE_DADN  &&  ftype != HDR_FTYPE_DCDN) ) {
@@ -1466,7 +1466,7 @@ static bit_t processJoinAccept (void) {
     }
     u1_t hdr  = LMIC.frame[0];
     u1_t dlen = LMIC.dataLen;
-    u4_t mic  = os_rlsbf4(&LMIC.frame[dlen-4]); // safe before modified by encrypt!
+    u4_t mic __attribute__((unused)) = os_rlsbf4(&LMIC.frame[dlen-4]); // safe before modified by encrypt!
     if( (dlen != LEN_JA && dlen != LEN_JAEXT)
         || (hdr & (HDR_FTYPE|HDR_MAJOR)) != (HDR_FTYPE_JACC|HDR_MAJOR_V1) ) {
         EV(specCond, ERR, (e_.reason = EV::specCond_t::UNEXPECTED_FRAME,
