@@ -49,7 +49,9 @@ DEFINE_LMIC;
 
 // Fwd decls.
 static void engineUpdate(void);
+#if !defined(DISABLE_BEACONS)
 static void startScan (void);
+#endif // !DISABLE_BEACONS
 
 
 // ================================================================================
