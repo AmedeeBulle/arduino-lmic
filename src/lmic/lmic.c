@@ -2047,7 +2047,9 @@ static void engineUpdate (void) {
 #endif // !DISABLE_JOIN
 
     ostime_t now    = os_getTime();
+#if !defined(DISABLE_BEACONS)
     ostime_t rxtime = 0;
+#endif // !DISABLE_BEACONS
     ostime_t txbeg  = 0;
 
 #if !defined(DISABLE_BEACONS)
